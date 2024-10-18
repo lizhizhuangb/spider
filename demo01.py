@@ -30,14 +30,14 @@ class spider():
         self.time = self.get_t()
         self.count = 1
         self.headers = {
-            "cookie":'xxxxx',# 此处修改为自己的cookie值
-            "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0",
+            "cookie": 'xxxxx',  # 此处修改为自己的cookie值
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0",
         }
         self.url = self.baseurl + self.id + '?pn=' + self.page_num + '&ajax=1' + f'&t={self.time}'
         self.file = open(f'./{id}.md', 'w', encoding='utf-8')
 
     def spider_get_max_num(self):
-        resp = requests.get(self.url,headers=self.headers)
+        resp = requests.get(self.url, headers=self.headers)
         if resp.status_code == 200:
             page = BeautifulSoup(resp.text, 'html.parser')
             self.max_number = page.find('input', {'class': 'jump_input_bright'}).get('max-page')
@@ -52,13 +52,11 @@ class spider():
         self.file.close()
 
     def get_target_page(self):
-        time.sleep(random.uniform(0.5,1))
-        resp = requests.get(self.url,headers=self.headers)
+        time.sleep(random.uniform(0.5, 1))
+        resp = requests.get(self.url, headers=self.headers)
         page = BeautifulSoup(resp.text, 'html.parser')
         comments = page.find_all('div', {'class': 'l_post l_post_bright j_l_post clearfix'})
         for comment_info in comments:
-            # print(comment_info)
-            # print('-----------------------------------------------------------------------------------------')
             try:
                 user = comment_info.find('a', {'class': 'p_author_name'}).text
             except:
@@ -75,14 +73,13 @@ class spider():
                     img_pos_end = comment.index('>') + 1  # 获取 <img> 标签的位置
                     # 在 <img> 标签前插入 Markdown 格式的图片
                     comment = comment[:img_pos_start] + f'![Image]({img})' + comment[img_pos_end:]
-            self.count +=1
+            self.count += 1
             self.file.write('#### ' + user + f'------{self.count}楼\n')
             self.file.write(comment + '\n')
 
 
-
 if __name__ == '__main__':
     thread_id = input('请你输入帖子的id')
-    spider = spider('9220823757', '1')
+    spider = spider(thread_id, '1')
     spider.spider_get_max_num()
     spider.loop_all_page()
