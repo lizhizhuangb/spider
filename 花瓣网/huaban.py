@@ -20,7 +20,7 @@ class Spider():
         self.img_url = 'https://gd-hbimg.huaban.com/'
         self.headers = {
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0',
-            'cookie': 'user_device_id=2c449f4595ca4a71a31ea9fa0b01b4b0; user_device_id_timestamp=1729239949965; fd_id=6b2086720971e15a4ca66f4557ad0c36; fd_id_timestamp=1729239956143; acw_tc=0a0966d617294794545675618e8190127bae5e3cebc976752709fcb22885ab; Hm_lvt_d4a0e7c3cd16eb58a65472f40e7ee543=1729239953,1729479461; Hm_lpvt_d4a0e7c3cd16eb58a65472f40e7ee543=1729479461; HMACCOUNT=A9B5EF25ACEB2538; huaban-page-setting={%22columnType%22:%22full%22%2C%22limit%22:4}'
+            'cookie': 'xxx' # 更换为你自己的cookie
         }
         self.pages = 0
 
