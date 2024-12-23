@@ -16,7 +16,7 @@
 5. Login 模拟登录，绕过验证码
    1. veity_1 普通数字+字母验证码
       1. gushiwen.cn
-      2. 0.zone
+      2. fofa.info
    2. 
    
    
